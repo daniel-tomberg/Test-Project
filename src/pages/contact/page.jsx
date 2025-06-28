@@ -139,7 +139,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-medium">Address</h3>
                   <address className="not-italic text-gray-500">
-                    123 Internet Street
+                    123 Pet Street
                     <br />
                     Dogville, NY 10001
                     <br />
@@ -192,18 +192,18 @@ export default function ContactPage() {
                   <h3 className="font-medium">Email</h3>
                   <p className="text-gray-500">
                     <a
-                      href="mailto:info@internetmarket.com"
+                      href="mailto:info@petdo.com"
                       className="hover:text-primary"
                     >
-                      info@internetmarket.com
+                      info@petdo.com
                     </a>
                   </p>
                   <p className="text-gray-500">
                     <a
-                      href="mailto:support@internetmarket.com"
+                      href="mailto:support@petdo.com"
                       className="hover:text-primary"
                     >
-                      support@internetmarket.com
+                      support@petdo.com
                     </a>
                   </p>
                 </div>

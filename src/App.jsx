@@ -9,12 +9,12 @@ import {
 import MainLayout from "./layouts/MainLayouy";
 import HomePage from "./pages/HomePage";
 import CategoryPage from "./pages/CategoryPage";
-import ProductDetailsPage from "./pages/ProductDetailsPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import SearchResultsPage from "./pages/SearchResultsPage";
-import ContactPage from "./pages/ContactPage";
-import AboutPage from "./pages/AboutPage";
-import LoginPage from "./pages/LoginPage";
+import ProductDetailsPage from "./pages/products/[productId]/page";
+import NotFoundPage from "./pages/notFound/page";
+import SearchResultsPage from "./pages/search/page";
+import ContactPage from "./pages/contact/page";
+import AboutPage from "./pages/about/page";
+import LoginPage from "./pages/login/page";
 
 function App({ products }) {
   // Wrapper components to inject products prop

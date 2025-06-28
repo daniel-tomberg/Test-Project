@@ -1,6 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/cartSlice";
+import { addToCart } from "/src/store/cartSlice";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);

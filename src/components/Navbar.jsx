@@ -135,6 +135,10 @@ export default function Navbar() {
         <div className="flex items-center gap-6 md:gap-10">
           <Link to="/" className="flex items-center gap-2">
             <div className="rounded-full bg-gray-200 w-10 h-10 flex items-center justify-center">
+              <img
+                src="/server/public/internetmoneylogo.png"
+                alt="InternetMarket Logo"
+              />
               <span className="sr-only">InternetMarket Logo</span>
             </div>
             <span className="text-xl font-bold">InternetMarket</span>

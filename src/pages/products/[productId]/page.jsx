@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import parse from "html-react-parser";
-import ProductAttributes from "../components/ProductAttributes";
-import ImageCarousel from "../components/ImageCarousel";
-import { addToCart, openCart } from "../store/cartSlice";
+import ProductAttributes from "../../../components/ProductAttributes";
+import ImageCarousel from "../../../components/ImageCarousel";
+import { addToCart, openCart } from "/src/store/cartSlice";
 import { useDispatch } from "react-redux";
-import Spinner from "../components/Spinner";
+import Spinner from "/src/components/Spinner";
 
 const ProductDetailsPage = ({ products }) => {
   const { productId } = useParams();

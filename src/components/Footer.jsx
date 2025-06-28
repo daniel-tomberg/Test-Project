@@ -23,7 +23,12 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-5 gap-8 text-gray-700">
         <div className="md:col-span-1 flex flex-col gap-4">
           <div className="flex items-center gap-2">
-            <div className="rounded-full bg-gray-200 w-12 h-12 flex items-center justify-center">
+            <div className="rounded-full bg-gray-200 w-12 h-12 flex items-center justify-center overflow-hidden">
+              <img
+                src="/server/public/internetmoneylogo.png"
+                alt="InternetMarket Logo"
+                className="object-cover w-full h-full"
+              />
               <span className="sr-only">InternetMarket Logo</span>
             </div>
             <span className="text-2xl font-bold">InternetMarket</span>

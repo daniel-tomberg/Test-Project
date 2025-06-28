@@ -93,21 +93,24 @@ export default function AboutPage() {
         <div>
           <h2 className="text-3xl font-bold mb-4">Our Story</h2>
           <p className="text-gray-500 mb-4">
-            Founded in 2015, InternetMarket started with a simple mission: to
-            provide high-quality products for pets and make pet parenting easier
-            and more enjoyable.
+            InternetMarket was founded to revolutionize the way people discover
+            and shop for electronics, gadgets, and lifestyle products online.
+            Our mission is to make cutting-edge technology and top brands
+            accessible to everyone, everywhere.
           </p>
           <p className="text-gray-500 mb-4">
-            What began as a small local shop has grown into a trusted online
-            destination for pet lovers across the country. Our founder, Sarah
-            Johnson, a passionate dog owner, recognized the need for premium pet
-            products that prioritize both quality and affordability.
+            From humble beginnings, InternetMarket has grown into a trusted
+            global marketplace, connecting customers with the latest
+            smartphones, laptops, wearables, and must-have accessories. We
+            partner with leading brands and innovative startups to bring you a
+            curated selection of quality products at competitive prices.
           </p>
           <p className="text-gray-500">
-            Today, we continue to be guided by our love for animals and
-            commitment to exceptional customer service. Every product in our
-            catalog is carefully selected to ensure it meets our high standards
-            for quality, safety, and value.
+            At InternetMarket, we are passionate about technology and dedicated
+            to delivering an exceptional shopping experience. Our team is
+            committed to fast shipping, responsive support, and ensuring every
+            customer finds exactly what they need to enhance their digital
+            lifestyle.
           </p>
         </div>
         <div className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
@@ -118,7 +121,6 @@ export default function AboutPage() {
           />
         </div>
       </div>
-
       {/* Team Section */}
       <div className="mb-16">
         <div className="text-center mb-10">
