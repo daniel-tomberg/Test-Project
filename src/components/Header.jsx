@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { openCart, closeCart } from "../store/cartSlice";
-import CartOverlay from "./CartOverlay";
+import { openCart } from "../store/cartSlice";
+import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const cartCount = useSelector((state) =>
     state.cart.items.reduce((acc, item) => acc + item.quantity, 0)
   );
-  const isCartOpen = useSelector((state) => state.cart.isCartOpen);
-
   // SVG icons
   const CartIcon = () => (
     <svg
@@ -103,13 +100,6 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white">
-      {/* Cart Overlay Backdrop */}
-      {isCartOpen && (
-        <div
-          className="fixed top-0 left-0 w-full h-full bg-black/30 z-40"
-          onClick={() => dispatch(closeCart())}
-        />
-      )}
       <div className="container flex h-16 items-center justify-between px-4 md:px-6 mx-auto">
         <div className="flex items-center gap-6 md:gap-10">
           <Link to="/" className="flex items-center gap-2">
@@ -125,7 +115,12 @@ export default function Navbar() {
             >
               Home
             </Link>
-
+            <Link
+              to="/shop"
+              className="text-sm font-medium transition-colors hover:text-blue-600"
+            >
+              Shop
+            </Link>
             <div className="relative group">
               <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-blue-600 focus:outline-none">
                 Categories <ChevronDown />
@@ -182,7 +177,12 @@ export default function Navbar() {
               />
             </div>
           </div>
-
+          <button
+            className="relative hidden md:inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-gray-100"
+            title="Language"
+          >
+            <Globe />
+          </button>
           <Link
             to="/login"
             className="relative hidden md:inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-gray-100"
@@ -281,7 +281,6 @@ export default function Navbar() {
           </nav>
         </div>
       )}
-      <CartOverlay isCartOpen={isCartOpen} />
     </header>
   );
 }
