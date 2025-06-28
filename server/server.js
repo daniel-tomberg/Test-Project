@@ -1,6 +1,17 @@
-const app = require("./app");
-const connectDatabase = require("./config/database");
+import express from "express";
+import productsRouter from "./api/products/route.js";
+
+const app = express();
+
+app.use("/api/products", productsRouter);
+
+// Serve static files if needed (for production)
+// app.use(express.static('dist'));
+
 const PORT = process.env.PORT || 3099;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 // UncaughtException Error
 process.on("uncaughtException", (err) => {
@@ -9,10 +20,6 @@ process.on("uncaughtException", (err) => {
 });
 
 // connectDatabase();
-
-const server = app.listen(PORT, () => {
-  console.log(`Server running`);
-});
 
 // Unhandled Promise Rejection
 process.on("unhandledRejection", (err) => {

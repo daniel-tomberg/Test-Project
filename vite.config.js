@@ -4,5 +4,10 @@ import tailwindcss from "@tailwindcss/vite";
 import vite from "vite-plugin-next-refresh";
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [react(), tailwindcss(), vite()],
+  plugins: [react(), tailwindcss(), vite()],
+  server: {
+    proxy: {
+      "/api": "http://localhost:3099",
+    },
+  },
 });
