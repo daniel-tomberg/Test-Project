@@ -12,6 +12,9 @@ import CategoryPage from "./pages/CategoryPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SearchResultsPage from "./pages/SearchResultsPage";
+import ContactPage from "./pages/ContactPage";
+import AboutPage from "./pages/AboutPage";
+import LoginPage from "./pages/LoginPage";
 
 function App({ products }) {
   // Wrapper components to inject products prop
@@ -39,6 +42,9 @@ function App({ products }) {
           path="/products/:productId"
           element={<ProductDetailsPageWithProducts />}
         />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     )

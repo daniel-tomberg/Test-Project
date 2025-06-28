@@ -29,8 +29,8 @@ export default function Footer() {
             <span className="text-2xl font-bold">InternetMarket</span>
           </div>
           <p className="text-sm text-gray-500">
-            Your one-stop shop for all pet needs. Quality products for your
-            furry friends.
+            Your one-stop shop for all needs. Quality products for your internet
+            people.
           </p>
           <div className="flex gap-3 mt-2">
             <a href="#" className="text-gray-500 hover:text-gray-700">
@@ -95,15 +95,17 @@ export default function Footer() {
         <div className="flex flex-col gap-2">
           <span className="font-semibold mb-2">Contact</span>
           <span className="text-sm text-gray-500">
-            123 Pet Street, Dogville
+            123 Internet Street, Dogville
           </span>
           <span className="text-sm text-gray-500">New York, NY 10001</span>
-          <span className="text-sm text-gray-500">Email: info@petdo.com</span>
+          <span className="text-sm text-gray-500">
+            Email: info@internetmarket.com
+          </span>
           <span className="text-sm text-gray-500">Phone: (123) 456-7890</span>
         </div>
       </div>
       <div className="border-t py-6 text-center text-gray-400 text-sm flex flex-col md:flex-row items-center justify-between container mx-auto px-4">
-        <span>© 2025 PetDo. All rights reserved.</span>
+        <span>© 2025 InternetMarket. All rights reserved.</span>
         <div className="flex gap-4 mt-2 md:mt-0">
           <Link to="/privacy" className="hover:text-primary">
             Privacy Policy

@@ -4,14 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
 
 const CATEGORIES = ["Food", "Accessories", "Toys", "Grooming"];
-const BRANDS = [
-  "PetNutrition",
-  "ComfyPets",
-  "PlayfulPaws",
-  "GroomPro",
-  "PetStyle",
-  "DentalPet",
-];
+const BRANDS = ["Nike", "Sony", "Apple", "H&M", "Amazon", "Xbox"];
 const RATINGS = [5, 4, 3, 2, 1];
 
 function getProductField(product, field, fallback) {
