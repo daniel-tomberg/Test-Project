@@ -1,16 +1,19 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { openCart, closeCart } from "../store/cartSlice";
 import CartOverlay from "./CartOverlay";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [mobileSearch, setMobileSearch] = useState("");
   const dispatch = useDispatch();
   const cartCount = useSelector((state) =>
     state.cart.items.reduce((acc, item) => acc + item.quantity, 0)
   );
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
+  const navigate = useNavigate();
 
   // SVG icons
   const CartIcon = () => (
@@ -101,6 +104,24 @@ export default function Navbar() {
     </svg>
   );
 
+  // Search submit handler
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim()) {
+      navigate(`/shop?search=${encodeURIComponent(search.trim())}`);
+    } else {
+      navigate("/shop");
+    }
+  };
+  const handleMobileSearch = (e) => {
+    e.preventDefault();
+    if (mobileSearch.trim()) {
+      navigate(`/shop?search=${encodeURIComponent(mobileSearch.trim())}`);
+    } else {
+      navigate("/shop");
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white">
       {/* Cart Overlay Backdrop */}
@@ -173,14 +194,16 @@ export default function Navbar() {
         </div>
         <div className="flex items-center gap-4">
           <div className="hidden md:flex">
-            <div className="relative">
+            <form className="relative" onSubmit={handleSearch}>
               <SearchIcon />
               <input
                 type="search"
                 placeholder="Search..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 className="w-[200px] pl-8 md:w-[250px] rounded-full bg-gray-100 border border-gray-200 h-10 focus:outline-none"
               />
-            </div>
+            </form>
           </div>
 
           <Link
@@ -214,14 +237,16 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t p-4 space-y-4 bg-white">
-          <div className="relative mb-4">
+          <form className="relative mb-4" onSubmit={handleMobileSearch}>
             <SearchIcon />
             <input
               type="search"
               placeholder="Search..."
+              value={mobileSearch}
+              onChange={(e) => setMobileSearch(e.target.value)}
               className="w-full pl-8 rounded-full bg-gray-100 border border-gray-200 h-10 focus:outline-none"
             />
-          </div>
+          </form>
           <nav className="flex flex-col space-y-4">
             <Link
               to="/"
