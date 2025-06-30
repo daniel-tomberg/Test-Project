@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import { store } from "./store/store.js";
+import Spinner from "./components/Spinner";
 
 function Root() {
   const [products, setProducts] = useState(null);
@@ -29,7 +30,7 @@ function Root() {
   if (loading)
     return (
       <div className="flex justify-center items-center min-h-screen">
-        Loading...
+        <Spinner loading={true} />
       </div>
     );
   if (error)

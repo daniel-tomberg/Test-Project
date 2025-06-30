@@ -151,37 +151,6 @@ export default function Navbar() {
               Home
             </Link>
 
-            <div className="relative group">
-              <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-blue-600 focus:outline-none">
-                Categories <ChevronDown />
-              </button>
-              <div className="absolute left-0 mt-2 w-40 bg-white border rounded shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity z-20">
-                <Link
-                  to="/category/food"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Food
-                </Link>
-                <Link
-                  to="/category/accessories"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Accessories
-                </Link>
-                <Link
-                  to="/category/toys"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Toys
-                </Link>
-                <Link
-                  to="/category/grooming"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                >
-                  Grooming
-                </Link>
-              </div>
-            </div>
             <Link
               to="/about"
               className="text-sm font-medium transition-colors hover:text-blue-600"

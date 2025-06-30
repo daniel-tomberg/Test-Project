@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
 
-const CATEGORIES = ["Food", "Accessories", "Toys", "Grooming"];
-const BRANDS = ["Nike", "Sony", "Apple", "H&M", "Amazon", "Xbox"];
+const CATEGORIES = ["Clothes", "Watches", "Computer", "Games", "Headphones"];
+const BRANDS = ["Nike", "Sony", "Apple", "H&M", "Nintendo", "Xbox"];
 const RATINGS = [5, 4, 3, 2, 1];
 
 function getProductField(product, field, fallback) {
@@ -42,14 +42,34 @@ function AccordionItem({ value, open, toggle, label, children }) {
 // Minimal Checkbox
 function Checkbox({ id, checked, onChange }) {
   return (
-    <input
-      id={id}
-      type="checkbox"
-      checked={checked}
-      onChange={onChange}
-      className="appearance-none h-6 w-6 border-2 border-red-400 rounded-md checked:bg-red-500 checked:border-red-500 focus:outline-none transition-all align-middle mr-2"
+    <span
+      className="relative inline-block align-middle mr-2"
       style={{ verticalAlign: "middle" }}
-    />
+    >
+      <input
+        id={id}
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        className="appearance-none h-6 w-6 border-2 border-black rounded-md focus:outline-none transition-all"
+        style={{ verticalAlign: "middle" }}
+      />
+      {checked && (
+        <svg
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+          width="18"
+          height="18"
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="black"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="5 11 9 15 15 7" />
+        </svg>
+      )}
+    </span>
   );
 }
 
@@ -103,7 +123,7 @@ const HomePage = ({ products }) => {
     // Rating
     if (
       selectedFilters.ratings.length > 0 &&
-      !selectedFilters.ratings.some((r) => rating >= r)
+      !selectedFilters.ratings.some((r) => rating >= r && rating < r + 1)
     )
       return false;
     // Price
@@ -349,7 +369,7 @@ const HomePage = ({ products }) => {
                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                           </svg>
                         ))}
-                        <span className="ml-1">& Up</span>
+                        <span className="ml-1"></span>
                       </label>
                     </div>
                   ))}
@@ -448,34 +468,17 @@ const HomePage = ({ products }) => {
                 const offerPrice =
                   product.offerPrice || (price * 0.85).toFixed(2);
                 const rating = getProductField(product, "rating", 4);
-                const ratingCount = getProductField(
-                  product,
-                  "ratingCount",
-                  Math.floor(Math.random() * 10000 + 1)
-                );
-                const sales = getProductField(
-                  product,
-                  "sales",
-                  Math.floor(Math.random() * 100000 + 1)
-                );
+                const ratingCount = getProductField(product, "sales", 0);
+                const sales = getProductField(product, "sales", 0);
                 const bestSeller = getProductField(product, "bestSeller", null);
-                const starSeller = getProductField(
-                  product,
-                  "starSeller",
-                  Math.random() > 0.7
-                );
-                const rrp = getProductField(
-                  product,
-                  "rrp",
-                  (price * 1.15).toFixed(2)
-                );
+                const rrp = getProductField(product, "rrp", price);
                 return (
                   <Link
                     to={`/products/${product.id}`}
                     key={product.id}
                     className="block focus:outline-none"
                   >
-                    <div className="relative bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 p-4 flex flex-col min-h-[340px] cursor-pointer">
+                    <div className="relative bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 p-4 flex flex-col min-h-[340px] cursor-pointer group">
                       {/* Add to Cart button top right */}
                       <button
                         className="absolute top-4 right-4 h-9 w-9 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-100 z-10"
@@ -493,11 +496,11 @@ const HomePage = ({ products }) => {
                       >
                         <CartIcon />
                       </button>
-                      <div className="w-full flex-1 flex items-center justify-center mb-4">
+                      <div className="w-full flex-1 flex items-center justify-center mb-4 overflow-hidden">
                         <img
                           src={product.gallery?.[0] || "/placeholder.svg"}
                           alt={product.name}
-                          className="object-contain rounded-lg max-h-40 max-w-full bg-gray-50"
+                          className="object-contain rounded-lg max-h-40 max-w-full bg-gray-50 transition-transform duration-300 group-hover:scale-110"
                           style={{ background: "#f7f7f7" }}
                         />
                       </div>
@@ -520,40 +523,41 @@ const HomePage = ({ products }) => {
                         </div>
                       )}
                       <div className="flex items-center gap-1 text-base text-gray-700 mb-1">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                          <svg
-                            key={i}
-                            className={`h-4 w-4 ${
-                              i < Math.floor(rating)
-                                ? "text-black fill-black"
-                                : i < rating
-                                ? "text-black fill-black opacity-50"
-                                : "text-gray-300"
-                            }`}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                          </svg>
-                        ))}
+                        {Array.from({ length: 5 }).map((_, i) => {
+                          const full = i < Math.floor(rating);
+                          const half = !full && i < rating;
+                          return (
+                            <svg
+                              key={i}
+                              className={`h-4 w-4 ${
+                                full
+                                  ? "text-black fill-black"
+                                  : half
+                                  ? "text-black fill-black opacity-50"
+                                  : "text-gray-300"
+                              }`}
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                              {half && (
+                                <rect
+                                  x="12"
+                                  y="2"
+                                  width="12"
+                                  height="19"
+                                  fill="white"
+                                  fillOpacity="0.5"
+                                />
+                              )}
+                            </svg>
+                          );
+                        })}
                         <span className="ml-1 text-sm font-normal">
                           {ratingCount.toLocaleString()}
                         </span>
                       </div>
-                      {starSeller && (
-                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-purple-700 text-white rounded text-xs font-medium w-fit mb-1 mt-1">
-                          <svg
-                            className="h-4 w-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                          </svg>
-                          Star seller
-                        </span>
-                      )}
+
                       <h3 className="font-medium text-base text-gray-900 mb-1 text-left w-full truncate mt-2">
                         {product.name}
                       </h3>
